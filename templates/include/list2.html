@@ -9,15 +9,15 @@
 {% endblock %}
 
 {% block rows %}
-     {% for producto in productos %}
+     {% for categoria in categorias %}
         <tr>
-            <td>{{ producto.id }}</td>
-            <td>{{ producto.nombre_categoria }}</td>
+            <td>{{ categoria.id }}</td>
+            <td>{{ categoria.nombre_categoria }}</td>
             <td>
-                <a href="{% url 'editar' producto.id %}" class="btn btn-warning btn-xs btn-flat">
+                <a href="{% url 'editar' categoria.id %}" class="btn btn-warning btn-xs btn-flat">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="{% url 'eliminar' producto.id %}" class="btn btn-danger btn-xs btn-flat">
+                <a href="{% url 'eliminar' categoria.id %}" class="btn btn-danger btn-xs btn-flat">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
@@ -63,13 +63,13 @@
 {% endblock %}
 
 {% block r1 %}
-    {% for p in product %}
+    {% for platillo in platillos %}
         <tr>
-            <td>{{ p.id }}</td>
-            <td>{{ p.nombre_producto }}</td>
-            <td>{{ p.categoria }}</td>
-            <td>{{ p.stock }}</td>
-            <td>{{ p.precio }}</td>
+            <td>{{ platillo.id }}</td>
+            <td>{{ platillo.nombre_producto }}</td>
+            <td>{{ platillo.categoria }}</td>
+            <td>{{ platillo.stock }}</td>
+            <td>{{ platillo.precio }}</td>
             <td>
                 <a href="#" class="btn btn-warning btn-xs btn-flat">
                     <i class="fas fa-edit"></i>

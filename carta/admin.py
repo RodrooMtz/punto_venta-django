@@ -5,7 +5,7 @@ from carta.models import ProductoMenu
 
 
 class ProductoMenuAdmin(admin.ModelAdmin):
-    list_display = ('nombre_platillo', 'precio', 'stock', 'disponible', 'categoria')
+    list_display = ('nombre_platillo', 'precio', 'categoria')
 
 
 admin.site.register(ProductoMenu, ProductoMenuAdmin)

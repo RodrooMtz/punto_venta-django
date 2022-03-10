@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 
-
+from carta.models import ProductoMenu
 from .models import Inventario
 from django.views.generic import CreateView, UpdateView, DeleteView
 from inventario.forms import CategoriaForm
@@ -14,20 +14,15 @@ from inventario.forms import CategoriaForm
 
 @login_required(login_url='login')
 def inventario(request):
-    productos = Inventario.objects.all()
+    categorias = Inventario.objects.all()
     #proveedores = Proveedor.objects.all()
-    #products = Producto.objects.all()
+    platillos = ProductoMenu.objects.all()
     context = {
-        'productos': productos,
+        'categorias': categorias,
         #'proveedor': proveedores,
-        #'product': products,
+        'platillos': platillos,
     }
     return render(request, 'include/list2.html', context)
-
-
-@login_required(login_url='login')
-def home(request):
-    return render(request, 'include/bienvenido.html')
 
 
 class CategoriaCreateView(CreateView):
