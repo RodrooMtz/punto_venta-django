@@ -1,0 +1,39 @@
+{% extends 'proveedor/lista.html' %}
+
+{% block columns %}
+    <tr>
+        <th>ID</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Proveedor</th>
+        <th>Estado</th>
+        <th>Opciones</th>
+
+    </tr>
+{% endblock %}
+
+{% block rows %}
+     {% for producto in productos_ %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.name_producto }}</td>
+            <td>{{ producto.cantidad }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.proveedor }}</td>
+            {% if producto.estado %}
+                <td>Salida</td>
+            {% else %}
+                <td>Entrega</td>
+            {% endif %}
+            <td>
+                <a href="{% url 'editar_entrega' producto.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar_entrega' producto.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

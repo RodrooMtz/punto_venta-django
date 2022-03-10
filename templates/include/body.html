@@ -1,0 +1,28 @@
+{% extends 'include/home.html' %}
+{% block body %}
+    <body class="hold-transition sidebar-dark layout-fixed">
+        <div class="wrapper">
+            <!-- Header -->
+            {% include 'vtc/header.html' %}
+
+            {% include 'vtc/sidebar.html' %}
+            <!-- Content -->
+            <div class="content-wrapper">
+                <br>
+                <div class="content">
+                    <div class="container-fluid">
+                        {% block content %}
+
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
+            <!-- Footer -->
+            {% include 'include/footer.html' %}
+        </div>
+        <!-- Block javascript -->
+        {% block javascript %}
+
+        {% endblock %}
+    </body>
+{% endblock %}

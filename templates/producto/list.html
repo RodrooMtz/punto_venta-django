@@ -1,0 +1,32 @@
+{% extends 'producto/list2.html' %}
+
+{% block columns %}
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Stock</th>
+        <th>Precio</th>
+        <th>Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+     {% for producto in productos_ %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre_producto }}</td>
+            <td>{{ producto.categoria }}</td>
+            <td>{{ producto.stock }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>
+                <a href="{% url 'editar_producto' producto.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar_producto' producto.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

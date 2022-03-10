@@ -1,0 +1,56 @@
+{% extends 'mesero/list.html' %}
+{% load static %}
+{% block head_list %}
+    <script src="{% static 'client/js/list.js' %}"></script>
+{% endblock %}
+
+{% block columns %}
+    <tr>
+        <th scope="col" style="width: 10%;">Nro</th>
+        <th scope="col" style="width: 15%;">Nombre</th>
+        <th scope="col" style="width: 15%;">Apellidos</th>
+        <th scope="col" style="width: 20%;">Opciones</th>
+    </tr>
+
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>Rodrigo</td>
+            <td>Martinez</td>
+            <td>
+                <a href="#" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="#" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+{% endblock %}
+
+{% block javascript %}
+    <div class="modal fade" id="meseroModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <a type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></a>
+          </div>
+          <div class="modal-body">
+            Hola
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="application/javascript">
+        $(function () {
+            $('#meseroModal').modal('show');
+        });
+    </script>
+{% endblock %}

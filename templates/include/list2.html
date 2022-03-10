@@ -1,0 +1,83 @@
+{% extends 'include/list.html' %}
+
+{% block columns %}
+    <tr>
+        <th>ID</th>
+        <th>Categoría</th>
+        <th>Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block rows %}
+     {% for producto in productos %}
+        <tr>
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre_categoria }}</td>
+            <td>
+                <a href="{% url 'editar' producto.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar' producto.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block c %}
+    <tr>
+        <th>ID</th>
+        <th>Proveedor</th>
+        <th>Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block r %}
+    {% for pro in proveedor %}
+        <tr>
+            <td>{{ pro.id }}</td>
+            <td>{{ pro.nombre_proveedor }}</td>
+            <td>
+                <a href="{% url 'editar_proveedor' pro.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar_proveedor' pro.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
+
+
+{% block c1 %}
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Categoría</th>
+        <th>Stock</th>
+        <th>Precio</th>
+        <th>Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block r1 %}
+    {% for p in product %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.nombre_producto }}</td>
+            <td>{{ p.categoria }}</td>
+            <td>{{ p.stock }}</td>
+            <td>{{ p.precio }}</td>
+            <td>
+                <a href="{% url 'editar_producto' p.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar_producto' p.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}

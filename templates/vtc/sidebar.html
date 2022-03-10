@@ -1,0 +1,73 @@
+{% load static %}
+<aside class="main-sidebar sidebar-dark-blue elevation-4">
+
+    <div class="sidebar">
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="#" class="fas fa-user-alt" style="color: white" alt="">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">{{ request.user.username }}</a>
+            </div>
+        </div>
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <li class="nav-header">Menú</li>
+                <li class="nav-item">
+                    <a href="{% url 'inventario' %}" class="nav-link">
+                        <i class="nav-icon fas fa-truck-loading"></i>
+                        <p>
+                            Inventario
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'mesero' %}" class="nav-link">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Usuarios
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'cuenta' %}" class="nav-link">
+                        <i class="nav-icon fas fa-dollar-sign"></i>
+                        <p>
+                            Cobrar
+                        </p>
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a href="{% url 'mesas' %}" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>
+                            Mesas
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'entrega' %}" class="nav-link">
+                        <i class="nav-icon fas fa-outdent"></i>
+                        <p>
+                            Entregas-Salidas
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="{% url 'estadisticas' %}" class="nav-link">
+                        <i class="nav-icon fas fa-shopping-cart"></i>
+                        <p>
+                            Ventas
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</aside>
