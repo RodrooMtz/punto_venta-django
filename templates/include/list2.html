@@ -56,7 +56,6 @@
         <th>ID</th>
         <th>Nombre</th>
         <th>Categoría</th>
-        <th>Stock</th>
         <th>Precio</th>
         <th>Opciones</th>
     </tr>
@@ -66,10 +65,9 @@
     {% for platillo in platillos %}
         <tr>
             <td>{{ platillo.id }}</td>
-            <td>{{ platillo.nombre_producto }}</td>
+            <td>{{ platillo.nombre_platillo }}</td>
             <td>{{ platillo.categoria }}</td>
-            <td>{{ platillo.stock }}</td>
-            <td>{{ platillo.precio }}</td>
+            <td>${{ platillo.precio }}</td>
             <td>
                 <a href="#" class="btn btn-warning btn-xs btn-flat">
                     <i class="fas fa-edit"></i>

@@ -84,14 +84,10 @@
         <div class="card-body">
             <table class="table" id="data">
                 <thead>
-                     {% block c1 %}
 
-                    {% endblock %}
                 </thead>
                 <tbody>
-                     {% block r1 %}
 
-                     {% endblock %}
                 </tbody>
             </table>
         </div>
@@ -112,46 +108,14 @@
         <div class="card-body">
             <table class="table" id="data">
                 <thead>
-                     <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Precio</th>
-                        <th>Imagen</th>
-                        <th>Categoría</th>
-                        <th>Opciones</th>
-                     </tr>
+                    {% block c1 %}
+
+                    {% endblock %}
                 </thead>
                 <tbody>
-                     <tr>
-                        <td>1</td>
-                        <td>Papas Mr Donkey</td>
-                        <td>$110</td>
-                        <td></td>
-                        <td>Alimentos</td>
-                        <td>
-                            <a href="#" class="btn btn-warning btn-xs btn-flat">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-xs btn-flat">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Soda Italiana</td>
-                        <td>$45</td>
-                        <td></td>
-                        <td>Bebidas</td>
-                        <td>
-                            <a href="#" class="btn btn-warning btn-xs btn-flat">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" class="btn btn-danger btn-xs btn-flat">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
+                     {% block r1 %}
+
+                     {% endblock %}
                 </tbody>
             </table>
         </div>
