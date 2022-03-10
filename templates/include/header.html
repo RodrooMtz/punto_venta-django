@@ -25,12 +25,12 @@
             </ul>
         </div>
         <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-user"></i> {{ request.user.username }}
-                </a>
-                <a class="nav-link" href="{% url 'logout' %}">
-                    <i class="fas fa-power-off"></i>
-                </a>
+            <a class="nav-link" href="#">
+                <i class="fas fa-user"></i> {{ request.user.username }}
+            </a>
+            <a class="nav-link" href="{% url 'logout' %}">
+                <i class="fas fa-power-off"></i>
+            </a>
         </ul>
     </div>
 </nav>

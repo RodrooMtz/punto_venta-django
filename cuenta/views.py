@@ -3,8 +3,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 
-from items_inventario.forms import SaleForm
-from items_inventario.mixins import ValidatePermissionRequiredMixin
+from inventario.forms import SaleForm
+from inventario.mixins import ValidatePermissionRequiredMixin
 from django.views.generic import CreateView
 
 from .models import Sale

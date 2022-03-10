@@ -4,11 +4,10 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 
-from items_inventario.models import Producto
-from proveedor.models import Proveedor
+
 from .models import Inventario
 from django.views.generic import CreateView, UpdateView, DeleteView
-from items_inventario.forms import CategoriaForm
+from inventario.forms import CategoriaForm
 
 
 # Create your views here.
@@ -16,12 +15,12 @@ from items_inventario.forms import CategoriaForm
 @login_required(login_url='login')
 def inventario(request):
     productos = Inventario.objects.all()
-    proveedores = Proveedor.objects.all()
-    products = Producto.objects.all()
+    #proveedores = Proveedor.objects.all()
+    #products = Producto.objects.all()
     context = {
         'productos': productos,
-        'proveedor': proveedores,
-        'product': products,
+        #'proveedor': proveedores,
+        #'product': products,
     }
     return render(request, 'include/list2.html', context)
 
