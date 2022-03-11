@@ -69,10 +69,10 @@
             <td>{{ platillo.categoria }}</td>
             <td>${{ platillo.precio }}</td>
             <td>
-                <a href="#" class="btn btn-warning btn-xs btn-flat">
+                <a href="{% url 'editar_platillo' platillo.id %}" class="btn btn-warning btn-xs btn-flat">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-danger btn-xs btn-flat">
+                <a href="{% url 'eliminar_platillo' platillo.id %}" class="btn btn-danger btn-xs btn-flat">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>

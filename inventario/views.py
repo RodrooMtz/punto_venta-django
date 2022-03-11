@@ -15,11 +15,11 @@ from inventario.forms import CategoriaForm
 @login_required(login_url='login')
 def inventario(request):
     categorias = Inventario.objects.all()
-    #proveedores = Proveedor.objects.all()
+    # proveedores = Proveedor.objects.all()
     platillos = ProductoMenu.objects.all()
     context = {
         'categorias': categorias,
-        #'proveedor': proveedores,
+        # 'proveedor': proveedores,
         'platillos': platillos,
     }
     return render(request, 'include/list2.html', context)
