@@ -2,6 +2,7 @@ from datetime import datetime
 from django.forms import ModelForm, TextInput, DateInput
 # from entrega.models import Entrega
 # from proveedor.models import Proveedor
+from promocion.models import Promocion, ProductosDias
 from .models import Inventario
 from cuenta.models import Sale
 from carta.models import ProductoMenu
@@ -67,3 +68,29 @@ class CartaForm(ModelForm):
                                      }
                                      ),
         }
+
+
+class PromocionForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
+        self.fields['dia'].widget.attrs['autofocus'] = True
+
+    class Meta:
+        model = ProductosDias
+        fields = '__all__'
+
+
+class Promocion1Form(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for form in self.visible_fields():
+            form.field.widget.attrs['class'] = 'form-control'
+            form.field.widget.attrs['autocomplete'] = 'off'
+        self.fields['nombre_promocion'].widget.attrs['autofocus'] = True
+
+    class Meta:
+        model = Promocion
+        fields = '__all__'

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'login',
     'inventario',
+    'promocion',
     'cuenta',
     'carta',
     'mesas',

@@ -28,21 +28,27 @@
 {% block c %}
     <tr>
         <th>ID</th>
-        <th>Proveedor</th>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Producto</th>
+        <th>Precio</th>
         <th>Opciones</th>
     </tr>
 {% endblock %}
 
 {% block r %}
-    {% for pro in proveedor %}
+    {% for producto_dia in productos_dias %}
         <tr>
-            <td>{{ pro.id }}</td>
-            <td>{{ pro.nombre_proveedor }}</td>
+            <td>{{ producto_dia.promocion1.id }}</td>
+            <td>{{ producto_dia.promocion1.nombre_promocion }}</td>
+            <td>{{ producto_dia.dia }}</td>
+            <td>{{ producto_dia.producto1 }}</td>
+            <td>${{ producto_dia.precio_descuento }}</td>
             <td>
-                <a href="#" class="btn btn-warning btn-xs btn-flat">
+                <a href="{% url 'editar_promocion' producto_dia.id %}" class="btn btn-warning btn-xs btn-flat">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="#" class="btn btn-danger btn-xs btn-flat">
+                <a href="{% url 'eliminar_promocion' producto_dia.id %}" class="btn btn-danger btn-xs btn-flat">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>

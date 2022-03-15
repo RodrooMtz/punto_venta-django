@@ -5,22 +5,23 @@ from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 
 from carta.models import ProductoMenu
+from promocion.models import Promocion, ProductosDias
 from .models import Inventario
 from django.views.generic import CreateView, UpdateView, DeleteView
 from inventario.forms import CategoriaForm
 
 
-# Create your views here.
-
 @login_required(login_url='login')
 def inventario(request):
     categorias = Inventario.objects.all()
-    # proveedores = Proveedor.objects.all()
+    promociones = Promocion.objects.all()
     platillos = ProductoMenu.objects.all()
+    productos_dias = ProductosDias.objects.all()
     context = {
         'categorias': categorias,
-        # 'proveedor': proveedores,
+        'promociones': promociones,
         'platillos': platillos,
+        'productos_dias': productos_dias,
     }
     return render(request, 'include/list2.html', context)
 

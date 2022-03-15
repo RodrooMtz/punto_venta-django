@@ -49,25 +49,25 @@
                 <div class="card-header">
                     <h3 class="card-title">
                         <i class="fas fa-search"></i>
-                        Proveedor
+                        Platillos
                     </h3>
                 </div>
                 <div class="card-body">
                     <table class="table" id="data1">
                         <thead>
-                             {% block c %}
+                             {% block c1 %}
 
                              {% endblock %}
                         </thead>
                         <tbody>
-                             {% block r %}
+                             {% block r1 %}
 
                              {% endblock %}
                         </tbody>
                     </table>
                 </div>
                 <div class="card-footer">
-                    <a class="btn btn-primary btn-flat" href="#">
+                    <a class="btn btn-primary btn-flat" href="{% url 'nuevo_platillo' %}">
                         <i class="fas fa-plus"></i> Nuevo registro
                     </a>
                 </div>
@@ -78,50 +78,25 @@
         <div class="card-header">
             <h3 class="card-title">
                 <i class="fas fa-search"></i>
-                Productos
+                Promociones
             </h3>
         </div>
         <div class="card-body">
-            <table class="table" id="data">
+            <table class="table" id="data2">
                 <thead>
-
-                </thead>
-                <tbody>
-
-                </tbody>
-            </table>
-        </div>
-
-        <div class="card-footer">
-            <a class="btn btn-primary btn-flat" href="#">
-                <i class="fas fa-plus"></i> Nuevo registro
-            </a>
-        </div>
-    </div>
-    <div class="card card-default">
-        <div class="card-header">
-            <h3 class="card-title">
-                <i class="fas fa-search"></i>
-                Platillos
-            </h3>
-        </div>
-        <div class="card-body">
-            <table class="table" id="data">
-                <thead>
-                    {% block c1 %}
+                    {% block c %}
 
                     {% endblock %}
                 </thead>
                 <tbody>
-                     {% block r1 %}
+                     {% block r %}
 
                      {% endblock %}
                 </tbody>
             </table>
         </div>
-
         <div class="card-footer">
-            <a class="btn btn-primary btn-flat" href="{% url 'nuevo_platillo' %}">
+            <a class="btn btn-primary btn-flat" href="{% url 'nuevo_promocion' %}">
                 <i class="fas fa-plus"></i> Nuevo registro
             </a>
         </div>
@@ -141,6 +116,15 @@
     <script type="application/javascript">
         $(function () {
             $('#data1').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
+        });
+    </script>
+
+    <script type="application/javascript">
+        $(function () {
+            $('#data2').DataTable({
                 responsive: true,
                 autoWidth: false
             });
