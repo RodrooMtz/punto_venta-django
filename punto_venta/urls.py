@@ -26,6 +26,8 @@ urlpatterns = [
     path('carta/', include('carta.urls')),
     path('mesas/', include('mesas.urls')),
     path('promocion/', include('promocion.urls')),
+    path('general/', include('general.urls')),
+    path('user/', include('user.urls')),
     path('', include('login.urls')),
     path('home/', views.home, name='home')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

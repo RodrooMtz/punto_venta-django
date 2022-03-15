@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'login',
     'inventario',
     'promocion',
+    'general',
     'cuenta',
+    'user',
     'carta',
     'mesas',
 ]

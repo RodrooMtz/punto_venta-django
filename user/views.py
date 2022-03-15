@@ -1,32 +1,57 @@
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView, DeleteView, UpdateView
 
-from items_inventario.mixins import ValidatePermissionRequiredMixin
+from inventario.forms import UserForm
+from inventario.mixins import ValidatePermissionRequiredMixin
 
 
-class UserListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
+@login_required(login_url='login')
+def user(request):
+    users = User.objects.all()
+    context = {
+        'users': users,
+    }
+    return render(request, 'user/list.html', context)
+
+
+class UserCreateView(CreateView):
     model = User
-    template_name = 'user/list.html'
-    permission_required = 'user.view_user'
+    form_class = UserForm
+    template_name = 'user/crear.html'
+    success_url = reverse_lazy('inventario')
 
-    @method_decorator(csrf_exempt)
+    @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
-    def post(self, request, *args, **kwargs):
-        data = {}
-        try:
-            action = request.POST['action']
-            if action == 'searchdata':
-                data = []
-                for i in User.objects.all():
-                    data.append(i.toJSON())
-            else:
-                data['error'] = 'Ha ocurrido un error'
-        except Exception as e:
-            data['error'] = str(e)
-        return JsonResponse(data, safe=False)
+
+class UserUpdateView(UpdateView):
+    model = User
+    form_class = UserForm
+    template_name = 'user/crear.html'
+    success_url = reverse_lazy('inventario')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserDeleteView(DeleteView):
+    model = User
+    template_name = 'user/eliminar.html'
+    success_url = reverse_lazy('inventario')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context

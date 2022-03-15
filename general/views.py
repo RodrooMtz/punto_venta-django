@@ -7,53 +7,15 @@ from django.utils.decorators import method_decorator
 from carta.models import ProductoMenu
 from general.models import General
 from promocion.models import Promocion, ProductosDias
-from .models import Inventario
+from .models import General
 from django.views.generic import CreateView, UpdateView, DeleteView
-from inventario.forms import CategoriaForm
+from inventario.forms import CategoriaForm, GeneralForm
 
 
-@login_required(login_url='login')
-def inventario(request):
-    categorias = Inventario.objects.all()
-    promociones = Promocion.objects.all()
-    platillos = ProductoMenu.objects.all()
-    productos_dias = ProductosDias.objects.all()
-    general = General.objects.all()
-    context = {
-        'categorias': categorias,
-        'promociones': promociones,
-        'platillos': platillos,
-        'productos_dias': productos_dias,
-        'generales': general,
-    }
-    return render(request, 'include/list2.html', context)
-
-
-class CategoriaCreateView(CreateView):
-    model = Inventario
-    form_class = CategoriaForm
-    template_name = 'formulario/categoria.html'
-    success_url = reverse_lazy('inventario')
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-
-class CategoryUpdateView(UpdateView):
-    model = Inventario
-    form_class = CategoriaForm
-    template_name = 'formulario/categoria.html'
-    success_url = reverse_lazy('inventario')
-
-    @method_decorator(login_required)
-    def dispatch(self, request, *args, **kwargs):
-        return super().dispatch(request, *args, **kwargs)
-
-
-class CategoriaDeleteView(DeleteView):
-    model = Inventario
-    template_name = 'formulario/eliminar.html'
+class GeneralCreateView(CreateView):
+    model = General
+    form_class = GeneralForm
+    template_name = 'general/crear.html'
     success_url = reverse_lazy('inventario')
 
     @method_decorator(login_required)
@@ -62,4 +24,36 @@ class CategoriaDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Nuevo Registro'
+        return context
+
+
+class GeneralUpdateView(UpdateView):
+    model = General
+    form_class = GeneralForm
+    template_name = 'general/crear.html'
+    success_url = reverse_lazy('inventario')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Editar Registro'
+        return context
+
+
+class GeneralDeleteView(DeleteView):
+    model = General
+    template_name = 'general/eliminar.html'
+    success_url = reverse_lazy('inventario')
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Eliminar Registro'
         return context

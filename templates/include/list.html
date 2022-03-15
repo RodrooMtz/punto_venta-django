@@ -101,6 +101,34 @@
             </a>
         </div>
     </div>
+
+    <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-search"></i>
+                General
+            </h3>
+        </div>
+        <div class="card-body">
+            <table class="table" id="data3">
+                <thead>
+                    {% block c2 %}
+
+                    {% endblock %}
+                </thead>
+                <tbody>
+                     {% block r2 %}
+
+                     {% endblock %}
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer">
+            <a class="btn btn-primary btn-flat" href="{% url 'nuevo_general' %}">
+                <i class="fas fa-plus"></i> Nuevo registro
+            </a>
+        </div>
+    </div>
 {% endblock %}
 
 {% block javascript %}
@@ -125,6 +153,15 @@
     <script type="application/javascript">
         $(function () {
             $('#data2').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
+        });
+    </script>
+
+    <script type="application/javascript">
+        $(function () {
+            $('#data3').DataTable({
                 responsive: true,
                 autoWidth: false
             });

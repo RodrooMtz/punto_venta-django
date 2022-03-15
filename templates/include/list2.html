@@ -85,3 +85,36 @@
         </tr>
     {% endfor %}
 {% endblock %}
+
+{% block c2 %}
+    <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Ingreso Efectivo</th>
+        <th>Ingreso Tarjeta</th>
+        <th>Propina Tarjeta</th>
+        <th>Numero de Mesas</th>
+        <th>Opciones</th>
+    </tr>
+{% endblock %}
+
+{% block r2 %}
+    {% for general in generales %}
+        <tr>
+            <td>{{ general.id }}</td>
+            <td>{{ general.date_joined }}</td>
+            <td>${{ general.ingreso_efectivo }}</td>
+            <td>${{ general.ingreso_tarjeta }}</td>
+            <td>${{ general.propina_tarjeta }}</td>
+            <td>{{ general.numero_mesas }}</td>
+            <td>
+                <a href="{% url 'editar_general' general.id %}" class="btn btn-warning btn-xs btn-flat">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a href="{% url 'eliminar_general' general.id %}" class="btn btn-danger btn-xs btn-flat">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endblock %}
