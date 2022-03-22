@@ -42,7 +42,7 @@
                             <td>{{ user.username }}</td>
                              <td>{{ user.first_name }}</td>
                              <td>{{ user.last_name }}</td>
-                             <td>{{ user.groups }}</td>
+                             <td>{% for grupo in user.groups.all %}{{ grupo }}{% endfor %}</td>
                              <td>{{ user.last_login }}</td>
                             <td>
                                 <a href="{% url 'editar_user' user.id %}" class="btn btn-warning btn-xs btn-flat">

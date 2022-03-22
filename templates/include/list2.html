@@ -42,7 +42,7 @@
             <td>{{ promocion.id }}</td>
             <td>{{ promocion.nombre_promocion }}</td>
             <td>{{ promocion.dia }}</td>
-            <td>{% for platillo in productos_dias %}{{ platillo.producto1.id }}, {% endfor %}</td>
+            <td>{% for p in promocion.producto.all %} {{ p }}, {% endfor %}</td>
             <td>${{ promocion.precio }}</td>
 
             <td>

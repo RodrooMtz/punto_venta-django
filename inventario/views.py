@@ -19,24 +19,10 @@ def inventario(request):
     productos_dias = ProductosDias.objects.all()
     general = General.objects.all()
 
-    comidas = ProductoMenu.objects.all()
-    group = {}
-    for comida in comidas:
-        restaurante_key = '_'.join([str(restaurante.pk) for restaurante in comida.productosdias_set.all()])
-        if not restaurante_key in group and restaurante_key != '':
-            group[restaurante_key] = {'restaurantes': comida.productosdias_set.all(), 'comidas': []}
-        if restaurante_key != '':
-            group[restaurante_key]['comidas'].append(comida)
-
-    #pr = ProductosDias.objects.filter(producto1__id__)
-
-    #print(pr)
     context = {
-        'group': group,
         'categorias': categorias,
         'promociones': promociones,
         'platillos': platillos,
-        'productos_dias': productos_dias,
         'generales': general,
     }
     return render(request, 'include/list2.html', context)
