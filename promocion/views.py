@@ -23,7 +23,7 @@ class PromocionCreateView(CreateView):
 
 
 class PromocionUpdateView(UpdateView):
-    model = ProductosDias
+    model = Promocion
     form_class = PromocionForm
     template_name = 'promocion/crear.html'
     success_url = reverse_lazy('inventario')
@@ -34,7 +34,7 @@ class PromocionUpdateView(UpdateView):
 
 
 class PromocionDeleteView(DeleteView):
-    model = ProductosDias
+    model = Promocion
     template_name = 'promocion/eliminar.html'
     success_url = reverse_lazy('inventario')
 

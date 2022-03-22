@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from django.contrib.auth.models import User
+from user.models import User
 from django.forms import ModelForm, TextInput, DateInput
 # from entrega.models import Entrega
 # from proveedor.models import Proveedor
@@ -79,10 +79,9 @@ class PromocionForm(ModelForm):
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['dia'].widget.attrs['autofocus'] = True
 
     class Meta:
-        model = ProductosDias
+        model = Promocion
         fields = '__all__'
 
 
@@ -111,12 +110,13 @@ class GeneralForm(ModelForm):
         model = General
         fields = '__all__'
         widgets = {
-            'date_joined': DateInput(format='%Y-%m-%d',
-                                     attrs={
-                                         'value': datetime.now().strftime('%Y-%m-%d')
-                                     }
-                                     ),
+            'date_joined': DateInput(
+                format='%Y-%m-%d',
+                attrs={
+                    'value': datetime.now().strftime('%Y-%m-%d')
                 }
+            ),
+        }
 
 
 class UserForm(ModelForm):
@@ -128,4 +128,5 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = '__all__'
+        fields = ('username', 'password', 'first_name', 'last_name', 'groups')
+        exclude = ['user_permissions', 'last_login']

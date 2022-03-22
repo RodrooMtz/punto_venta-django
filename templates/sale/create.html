@@ -44,33 +44,22 @@
                 <div class="col-lg-8">
                     <div class="card card-secondary">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-boxes"></i> Detalle de productos</h3>
+                            <h3 class="card-title"><i class="fas fa-boxes"></i> Detalle</h3>
                         </div>
                         <div class="card-body">
-                            <div class="form-group">
-                                <label>Buscador de productos:</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" name="search"
-                                           placeholder="Ingrese una descripción de producto" autocomplete="off">
-                                    <span class="input-group-append">
-                                        <button type="button" class="btn btn-danger btn-flat"><i
-                                                class="fas fa-times"></i></button>
-                                      </span>
-                                </div>
-                            </div>
-                            <hr>
-                            <table class="table table-bordered" id="tblProducts">
+
+                            <table class="table" id="table_sale">
                                 <thead>
-                                <tr>
-                                    <th>Eliminar</th>
-                                    <th>Producto</th>
-                                    <th>Categoría</th>
-                                    <th>PVP</th>
-                                    <th>Cantidad</th>
-                                    <th>Subtotal</th>
-                                </tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Status</th>
+                                        <th>Número de mesa</th>
+                                        <th>Mesero</th>
+                                        <th>Total</th>
+                                    </tr>
                                 </thead>
                                 <tbody>
+
                                 </tbody>
                             </table>
                         </div>
@@ -82,6 +71,10 @@
                             <h3 class="card-title"><i class="fas fa-shopping-cart"></i> Datos de la factura</h3>
                         </div>
                         <div class="card-body">
+                            <div class="form-group">
+                                <label>Efectivo en caja:</label>
+                                {{ form.date_joined }}
+                            </div>
                             <div class="form-group">
                                 <label>Fecha de venta:</label>
                                 {{ form.date_joined }}
@@ -98,14 +91,6 @@
                                 <label>IVA:</label>
                                 {{ form.iva }}
                             </div>
-                            <div class="form-group">
-                                <label>IVA Calculado:</label>
-                                <input type="text" class="form-control" readonly name="ivacalc" value="0.00">
-                            </div>
-                            <div class="form-group">
-                                <label>Total a pagar:</label>
-                                {{ form.total }}
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -120,4 +105,13 @@
             </a>
         </div>
     </div>
+
+    <script type="application/javascript">
+        $(function () {
+            $('#table_sale').DataTable({
+                responsive: true,
+                autoWidth: false
+            });
+        });
+    </script>
 {% endblock %}

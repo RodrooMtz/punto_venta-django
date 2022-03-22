@@ -1,3 +1,10 @@
 from django.contrib import admin
+from cuenta.models import Sale
 
-# Register your models here.
+
+class SaleAdmin(admin.ModelAdmin):
+    list_display = ('date_joined', 'iva', 'numero_mesa')
+
+
+admin.site.register(Sale, SaleAdmin)
+

@@ -1,5 +1,4 @@
 from django.urls import path
-from django.urls import path
 from . import views
 from .views import SaleCreateView, cuenta
 from login.views import LoginFormView

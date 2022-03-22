@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from user.models import User
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -25,7 +25,9 @@ class UserCreateView(CreateView):
     model = User
     form_class = UserForm
     template_name = 'user/crear.html'
-    success_url = reverse_lazy('inventario')
+    success_url = reverse_lazy('user')
+
+    # permission_required = 'add_user'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -36,7 +38,7 @@ class UserUpdateView(UpdateView):
     model = User
     form_class = UserForm
     template_name = 'user/crear.html'
-    success_url = reverse_lazy('inventario')
+    success_url = reverse_lazy('user')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
@@ -46,7 +48,7 @@ class UserUpdateView(UpdateView):
 class UserDeleteView(DeleteView):
     model = User
     template_name = 'user/eliminar.html'
-    success_url = reverse_lazy('inventario')
+    success_url = reverse_lazy('user')
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):

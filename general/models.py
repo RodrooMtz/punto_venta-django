@@ -11,4 +11,4 @@ class General(models.Model):
     propina_tarjeta = models.DecimalField(default=0.00, max_digits=9, decimal_places=2)
 
     def __str__(self):
-        return str(self.date_joined)
+        return str(self.efectivo_caja)

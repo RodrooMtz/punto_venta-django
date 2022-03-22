@@ -26,6 +26,11 @@
                         <th>ID</th>
                         <th>Fecha de creación</th>
                         <th>Nombre de usuario</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Grupo</th>
+                        <th>Ultima conexión</th>
+
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -35,6 +40,10 @@
                             <td>{{ user.id }}</td>
                             <td>{{ user.date_joined }}</td>
                             <td>{{ user.username }}</td>
+                             <td>{{ user.first_name }}</td>
+                             <td>{{ user.last_name }}</td>
+                             <td>{{ user.groups }}</td>
+                             <td>{{ user.last_login }}</td>
                             <td>
                                 <a href="{% url 'editar_user' user.id %}" class="btn btn-warning btn-xs btn-flat">
                                     <i class="fas fa-edit"></i>

@@ -29,26 +29,27 @@
     <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Fecha</th>
+        <th>Dia</th>
         <th>Producto</th>
-        <th>Precio</th>
+        <th>Precio Promoción</th>
         <th>Opciones</th>
     </tr>
 {% endblock %}
 
 {% block r %}
-    {% for producto_dia in productos_dias %}
+    {% for promocion in promociones %}
         <tr>
-            <td>{{ producto_dia.promocion1.id }}</td>
-            <td>{{ producto_dia.promocion1.nombre_promocion }}</td>
-            <td>{{ producto_dia.dia }}</td>
-            <td>{{ producto_dia.producto1 }}</td>
-            <td>${{ producto_dia.precio_descuento }}</td>
+            <td>{{ promocion.id }}</td>
+            <td>{{ promocion.nombre_promocion }}</td>
+            <td>{{ promocion.dia }}</td>
+            <td>{% for platillo in productos_dias %}{{ platillo.producto1.id }}, {% endfor %}</td>
+            <td>${{ promocion.precio }}</td>
+
             <td>
-                <a href="{% url 'editar_promocion' producto_dia.id %}" class="btn btn-warning btn-xs btn-flat">
+                <a href="{% url 'editar_promocion' promocion.id %}" class="btn btn-warning btn-xs btn-flat">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="{% url 'eliminar_promocion' producto_dia.id %}" class="btn btn-danger btn-xs btn-flat">
+                <a href="{% url 'eliminar_promocion' promocion.id %}" class="btn btn-danger btn-xs btn-flat">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
