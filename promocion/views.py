@@ -21,6 +21,32 @@ class PromocionCreateView(CreateView):
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
+    """def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Nueva Promoción'
+        context['action'] = 'add'
+        return context"""
+
+    def get_context_data(self, **kwargs):
+        context = super(PromocionCreateView, self).get_context_data(**kwargs)
+        if 'form' not in context:
+            context['form'] = self.form_class(self.request.GET)
+        if 'form2' not in context:
+            context['form2'] = self.second_form_class(self.request.GET)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object
+        form = self.form_class(request.POST)
+        form2 = self.second_form_class(request.POST)
+        if form.is_valid() and form2.is_valid():
+            solicitud = form.save(commit=False)
+            solicitud.persona = form2.save()
+            solicitud.save()
+            return HttpResponseRedirect(self.get_success_url())
+        else:
+            return self.render_to_response(self.get_context_data(form=form, form2=form2))
+
 
 class PromocionUpdateView(UpdateView):
     model = Promocion
@@ -31,6 +57,11 @@ class PromocionUpdateView(UpdateView):
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Editar Promoción'
+        return context
 
 
 class PromocionDeleteView(DeleteView):
@@ -44,4 +75,5 @@ class PromocionDeleteView(DeleteView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['title'] = 'Eliminar Promoción'
         return context

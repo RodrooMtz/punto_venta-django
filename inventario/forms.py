@@ -1,7 +1,7 @@
 from datetime import datetime
 
 from user.models import User
-from django.forms import ModelForm, TextInput, DateInput
+from django.forms import ModelForm, TextInput, DateInput, PasswordInput
 # from entrega.models import Entrega
 # from proveedor.models import Proveedor
 from general.models import General
@@ -39,17 +39,44 @@ class SaleForm(ModelForm):
         for form in self.visible_fields():
             form.field.widget.attrs['class'] = 'form-control'
             form.field.widget.attrs['autocomplete'] = 'off'
-        self.fields['cliente'].widget.attrs['autofocus'] = True
+        self.fields['efectivo_caja'].widget.attrs['autofocus'] = True
+
+        self.fields['subtotal'].widget.attrs = {
+            'readonly': True,
+            'class': 'form-control'
+        }
+
+        self.fields['date_joined'].widget.attrs = {
+            'readonly': True,
+            'class': 'form-control'
+        }
+
+        self.fields['total'].widget.attrs = {
+            'readonly': True,
+            'class': 'form-control'
+        }
 
     class Meta:
         model = Sale
         fields = '__all__'
         widgets = {
-            'date_joined': DateInput(format='%Y-%m-%d',
-                                     attrs={
-                                         'value': datetime.now().strftime('%Y-%m-%d')
-                                     }
-                                     ),
+            'date_joined': DateInput(
+                format='%Y-%m-%d',
+                attrs={
+                    'value': datetime.now().strftime('%Y-%m-%d')
+                }
+            ),
+            'cliente': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese el cliente',
+                }
+            ),
+            'iva': TextInput(
+                attrs={
+                    'readonly': True,
+                    'class': 'form-control',
+                }
+            ),
         }
 
 
@@ -65,11 +92,12 @@ class CartaForm(ModelForm):
         model = ProductoMenu
         fields = '__all__'
         widgets = {
-            'date_joined': DateInput(format='%Y-%m-%d',
-                                     attrs={
-                                         'value': datetime.now().strftime('%Y-%m-%d')
-                                     }
-                                     ),
+            'date_joined': DateInput(
+                format='%Y-%m-%d',
+                attrs={
+                     'value': datetime.now().strftime('%Y-%m-%d')
+                }
+            ),
         }
 
 
@@ -81,7 +109,7 @@ class PromocionForm(ModelForm):
             form.field.widget.attrs['autocomplete'] = 'off'
 
     class Meta:
-        model = Promocion
+        model = ProductosDias
         fields = '__all__'
 
 
@@ -108,7 +136,7 @@ class GeneralForm(ModelForm):
 
     class Meta:
         model = General
-        fields = '__all__'
+        fields = ('efectivo_caja', 'ingreso_tarjeta', 'numero_mesas', 'propina_tarjeta', 'date_joined')
         widgets = {
             'date_joined': DateInput(
                 format='%Y-%m-%d',
@@ -130,3 +158,25 @@ class UserForm(ModelForm):
         model = User
         fields = ('username', 'password', 'first_name', 'last_name', 'groups')
         exclude = ['user_permissions', 'last_login']
+        widgets = {
+            'password': PasswordInput(
+                attrs={
+                    'placeholder': 'Ingrese su contraseña',
+                }
+            ),
+            'username': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su nombre de usuario',
+                }
+            ),
+            'first_name': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese su nombre',
+                }
+            ),
+            'last_name': TextInput(
+                attrs={
+                    'placeholder': 'Ingrese sus apellidos',
+                }
+            ),
+        }

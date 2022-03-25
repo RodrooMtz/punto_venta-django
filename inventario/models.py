@@ -1,6 +1,5 @@
 from django.db import models
-
-# Create your models here.
+from django.forms import model_to_dict
 
 
 class Inventario(models.Model):
@@ -9,3 +8,7 @@ class Inventario(models.Model):
 
     def __str__(self):
         return self.nombre_categoria
+
+    def toJSON(self):
+        item = model_to_dict(self)
+        return item

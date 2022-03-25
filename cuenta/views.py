@@ -14,7 +14,7 @@ class SaleCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Create
     model = Sale
     form_class = SaleForm
     template_name = 'sale/create.html'
-    success_url = reverse_lazy('index')
+    success_url = reverse_lazy('crear_cuenta')
     permission_required = 'erp.add_sale'
     url_redirect = success_url
 
@@ -48,7 +48,7 @@ def cuenta(request):
 
 
 def mesero(request):
-    return render(request, 'mesero/list2.html')
+    return render(request, 'home.html')
 
 
 def estadisticas(request):

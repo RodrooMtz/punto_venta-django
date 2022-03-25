@@ -42,7 +42,12 @@
             <td>{{ promocion.id }}</td>
             <td>{{ promocion.nombre_promocion }}</td>
             <td>{{ promocion.dia }}</td>
-            <td>{% for p in promocion.producto.all %} {{ p }}, {% endfor %}</td>
+            <td><ul>
+                {% for p in promocion.producto.all %}
+                    <li>2 {{ p }}</li>
+                {% endfor %}
+            </ul>
+            </td>
             <td>${{ promocion.precio }}</td>
 
             <td>
@@ -91,6 +96,7 @@
     <tr>
         <th>ID</th>
         <th>Fecha</th>
+        <th>Efectivo Caja</th>
         <th>Ingreso Efectivo</th>
         <th>Ingreso Tarjeta</th>
         <th>Propina Tarjeta</th>
@@ -104,6 +110,7 @@
         <tr>
             <td>{{ general.id }}</td>
             <td>{{ general.date_joined }}</td>
+            <td>${{ general.efectivo_caja }}</td>
             <td>${{ general.ingreso_efectivo }}</td>
             <td>${{ general.ingreso_tarjeta }}</td>
             <td>${{ general.propina_tarjeta }}</td>

@@ -132,39 +132,38 @@
 {% endblock %}
 
 {% block javascript %}
+
     <script type="application/javascript">
         $(function () {
             $('#data').DataTable({
                 responsive: true,
                 autoWidth: false
             });
-        });
-    </script>
-
-    <script type="application/javascript">
-        $(function () {
             $('#data1').DataTable({
                 responsive: true,
                 autoWidth: false
             });
-        });
-    </script>
-
-    <script type="application/javascript">
-        $(function () {
             $('#data2').DataTable({
                 responsive: true,
                 autoWidth: false
             });
-        });
-    </script>
-
-    <script type="application/javascript">
-        $(function () {
             $('#data3').DataTable({
                 responsive: true,
                 autoWidth: false
             });
+            $('.btnTest').on('click', function () {
+                $.ajax({
+                    url: '{% url 'nuevo' %}',
+                    type: 'POST',
+                    data: {id: 1},
+                    dataType: 'json'
+                }).done(function (data){
+                    console.log(data)
+                }).fail(function (data){
+                    alert("error");
+                })
+            });
         });
     </script>
+
 {% endblock %}

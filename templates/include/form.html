@@ -7,7 +7,11 @@
         <div class="card card-default">
             <div class="card-header">
                 <h3 class="card-title">
-                    <i class="fas fa-edit"></i>
+                    {% if action == 'add' %}
+                        <i class="fas fa-plus"></i>
+                    {% else %}
+                        <i class="fas fa-edit"></i>
+                    {% endif %}
                      {{ title }}
                 </h3>
             </div>
@@ -38,8 +42,53 @@
                 <button type="submit" class="btn btn-primary btn-flat">
                     <i class="fas fa-save"></i> Guardar registro
                 </button>
+                <a href="{{ list_url }}" class="btn btn-danger btn-flat">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
             </div>
         </div>
     </form>
+
+    <script>
+
+        {% if form.errors %}
+            var errors = '';
+            {% for field in form %}
+                {% for error in field.errors %}
+                    errors += '{{ error }}\n';
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                errors += '{{ error }}\n';
+            {% endfor %}
+            Swal.fire({
+                title: 'Error!',
+                text: errors,
+                icon: 'error'
+            });
+        {% endif %}
+
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+
+            var parameters = $(this).serializeArray();
+
+            $.ajax({
+                url: '{% url 'nuevo' %}',
+                type: 'POST',
+                data: parameters,
+                dataType: 'json'
+            }).done(function (data){
+                if(!data.hasOwnProperty('error')){
+                    location.href = '{{ list_url }}';
+                    return false;
+                }
+                message_error(data.error);
+            }).fail(function (data){
+                alert("error");
+            })
+        });
+
+    </script>
 
 {% endblock %}
