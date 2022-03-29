@@ -24,8 +24,7 @@ class Promocion(models.Model):
     imagen = models.ImageField(upload_to='photos/promo', blank=False)
     precio = models.IntegerField(default=None, blank=False)
     dia = models.CharField(max_length=10, choices=DAYS, blank=False)
-    producto = models.ManyToManyField(ProductoMenu, through='ProductosDias', through_fields=('promocion1', 'producto1'),
-                                      blank=False)
+    producto = models.ManyToManyField(ProductoMenu, through='ProductosDias', blank=False)
 
     def __str__(self):
         return self.nombre_promocion

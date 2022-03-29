@@ -4,7 +4,7 @@ function message_error(obj){
         html = '<ul style="text-align: left">';
 
         $.each(obj, function (key, value){
-            html += '<li>'+ value + '</li>'
+            html += '<li>'+ key + ': ' + value + '</li>'
         });
         html += '</ul>';
     }else{

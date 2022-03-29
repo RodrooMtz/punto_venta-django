@@ -101,7 +101,7 @@ class CartaForm(ModelForm):
         }
 
 
-class PromocionForm(ModelForm):
+class ProductosDiasForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for form in self.visible_fields():
@@ -110,10 +110,10 @@ class PromocionForm(ModelForm):
 
     class Meta:
         model = ProductosDias
-        fields = '__all__'
+        fields = ('promocion1', 'producto1', 'cantidad')
 
 
-class Promocion1Form(ModelForm):
+class PromocionForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for form in self.visible_fields():
@@ -123,7 +123,7 @@ class Promocion1Form(ModelForm):
 
     class Meta:
         model = Promocion
-        fields = '__all__'
+        fields = ('nombre_promocion', 'imagen', 'precio', 'dia')
 
 
 class GeneralForm(ModelForm):

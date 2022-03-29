@@ -42,11 +42,12 @@
             <td>{{ promocion.id }}</td>
             <td>{{ promocion.nombre_promocion }}</td>
             <td>{{ promocion.dia }}</td>
-            <td><ul>
+            <td>
+                <ul>
                 {% for p in promocion.producto.all %}
-                    <li>2 {{ p }}</li>
+                    <li> {{ p }}</li>
                 {% endfor %}
-            </ul>
+                </ul>
             </td>
             <td>${{ promocion.precio }}</td>
 

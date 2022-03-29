@@ -18,6 +18,7 @@ from inventario.forms import CategoriaForm
 def inventario(request):
     categorias = Inventario.objects.all()
     promociones = Promocion.objects.all()
+    producto_promocion = ProductosDias.objects.all()
     platillos = ProductoMenu.objects.all()
     general = General.objects.all()
 
@@ -26,6 +27,7 @@ def inventario(request):
         'promociones': promociones,
         'platillos': platillos,
         'generales': general,
+        'producto_promocion': producto_promocion,
     }
     return render(request, 'include/list2.html', context)
 
@@ -53,7 +55,7 @@ class CategoriaCreateView(ValidatePermissionRequiredMixin, CreateView):
                 else:
                     data['error'] = form.errors
             else:
-                data['error'] = 'No ha '
+                data['error'] = 'No ha seleccionado una opción'
         except Exception as e:
             data['error'] = str(e)
         return JsonResponse(data)
@@ -76,11 +78,30 @@ class CategoryUpdateView(ValidatePermissionRequiredMixin, UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            action = request.POST['action']
+            if action == 'edit':
+                form = self.get_form()
+                if form.is_valid():
+                    form.save()
+                else:
+                    data['error'] = form.errors
+            else:
+                data['error'] = 'No ha '
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Editar Categoría'
+        context['action'] = 'edit'
+        context['list_url'] = self.success_url
         return context
 
 
@@ -91,10 +112,23 @@ class CategoriaDeleteView(ValidatePermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('inventario')
 
     @method_decorator(login_required)
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        try:
+            self.object.delete()
+        except Exception as e:
+            data['error'] = str(e)
+        return JsonResponse(data)
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Eliminar Categoría'
+        context['action'] = 'delete'
+        context['list_url'] = self.success_url
         return context

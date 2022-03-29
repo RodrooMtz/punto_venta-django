@@ -11,7 +11,7 @@ class promocioInline(admin.TabularInline):
 
 class PromocionAdmin(admin.ModelAdmin):
     inlines = [promocioInline, ]
-    list_display = ('nombre_promocion', 'imagen')
+    list_display = ('id', 'nombre_promocion', 'imagen')
 
 
 class Producto1Admin(admin.ModelAdmin):
